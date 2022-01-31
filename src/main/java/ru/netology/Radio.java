@@ -29,11 +29,11 @@ public class Radio {
     }
 
     public void setCurrentStation(int currentStation) {
-        if (currentStation < 0) {
-            return;
+        if (currentStation < 1) {
+            currentStation = 1;
         }
         if (currentStation > numberOfStations +1) {
-            return;
+             currentStation = numberOfStations + 1;
         }
         this.currentStation = currentStation;
     }
@@ -42,12 +42,12 @@ public class Radio {
         if (currentStation < numberOfStations) {
             currentStation = currentStation + 1;
         } else {
-            currentStation = 0;
+            currentStation = 1;
         }
     }
 
     public void prevStation() {
-        if (currentStation > 0) {
+        if (currentStation > 1) {
             currentStation = currentStation - 1;
         } else {
             currentStation = numberOfStations + 1;

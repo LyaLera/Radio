@@ -17,14 +17,15 @@ class RadioTest {
     @Test
     void shouldChekSetCurrentStationOverMaxStation() {
         radio1.setCurrentStation(21);
-        assertEquals(0, radio1.getCurrentStation());
+        assertEquals(20, radio1.getCurrentStation());
     }
 
     @Test
-    void shouldCheckSetCurrentStationLessZero() {
-        radio.setCurrentStation(-1);
-        assertEquals(0, radio.getCurrentStation());
+    void shouldChekSetCurrentStationLessFirstStation() {
+        radio1.setCurrentStation(0);
+        assertEquals(1, radio1.getCurrentStation());
     }
+
 
     @Test
     void shouldCheckSetNumberOfStationsLessZero() {
@@ -39,11 +40,11 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckNextStationWhenCurrentStationIsZero() {
+    void shouldCheckNextStationWhenCurrentStationLessFirstStation() {
         radio.setCurrentStation(0);
         radio.nextStation();
 
-        assertEquals(1, radio.getCurrentStation());
+        assertEquals(2, radio.getCurrentStation());
     }
 
     @Test
@@ -51,7 +52,7 @@ class RadioTest {
         radio.setCurrentStation(10);
         radio.nextStation();
 
-        assertEquals(0, radio.getCurrentStation());
+        assertEquals(1, radio.getCurrentStation());
     }
 
     @Test
@@ -71,8 +72,8 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckPrevStationWhenCurrentStationIsZero() {
-        radio.setCurrentStation(0);
+    void shouldCheckPrevStationWhenCurrentStationIsFirstStation() {
+        radio.setCurrentStation(1);
         radio.prevStation();
 
         assertEquals(10, radio.getCurrentStation());
@@ -91,7 +92,7 @@ class RadioTest {
         radio.setCurrentStation(11);
         radio.prevStation();
 
-        assertEquals(10, radio.getCurrentStation());
+        assertEquals(9, radio.getCurrentStation());
     }
 
     @Test
