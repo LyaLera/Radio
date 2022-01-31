@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
     Radio radio = new Radio();
-    Radio radio1 = new Radio(20);
+    Radio radio1 = new Radio(19);
 
     @Test
-    void shouldChekSetCurrentStationIsNumberOfStations() {
+    void shouldChekSetCurrentStationIsMaxStation() {
         radio.setCurrentStation(10);
         assertEquals(10, radio.getCurrentStation());
     }
 
     @Test
-    void shouldChekSetCurrentStationOverNumbersOfStations() {
+    void shouldChekSetCurrentStationOverMaxStation() {
         radio1.setCurrentStation(21);
         assertEquals(0, radio1.getCurrentStation());
     }
@@ -29,7 +29,7 @@ class RadioTest {
     @Test
     void shouldCheckSetNumberOfStationsLessZero() {
         radio1.setNumberOfStations(-1);
-        assertEquals(20, radio1.getNumberOfStations());
+        assertEquals(19, radio1.getNumberOfStations());
     }
 
     @Test
@@ -47,7 +47,7 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckNextStationWhenCurrentStationIsNumberOfStations() {
+    void shouldCheckNextStationWhenCurrentStationIsMaxStation() {
         radio.setCurrentStation(10);
         radio.nextStation();
 
@@ -55,7 +55,7 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckNextStationWhenCurrentStationAboveNumberOfStations() {
+    void shouldCheckNextStationWhenCurrentStationAboveMaxStation() {
         radio1.setCurrentStation(21);
         radio1.nextStation();
 
@@ -79,7 +79,7 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckPrevStationWhenCurrentStationIsNumberOfStations() {
+    void shouldCheckPrevStationWhenCurrentStationIsMaxStation() {
         radio1.setCurrentStation(20);
         radio1.prevStation();
 
@@ -87,8 +87,8 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckPrevStationWhenCurrentStationAboveNumberOfStations() {
-        radio.setCurrentStation(12);
+    void shouldCheckPrevStationWhenCurrentStationAboveMaxStation() {
+        radio.setCurrentStation(11);
         radio.prevStation();
 
         assertEquals(10, radio.getCurrentStation());

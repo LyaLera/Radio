@@ -4,7 +4,7 @@ public class Radio {
 
     private int currentStation;
     private int volume;
-    private int numberOfStations = 10;
+    private int numberOfStations = 9;
 
     public Radio(int numberOfStations) {
         this.numberOfStations = numberOfStations;
@@ -32,7 +32,7 @@ public class Radio {
         if (currentStation < 0) {
             return;
         }
-        if (currentStation > numberOfStations) {
+        if (currentStation > numberOfStations +1) {
             return;
         }
         this.currentStation = currentStation;
@@ -50,7 +50,7 @@ public class Radio {
         if (currentStation > 0) {
             currentStation = currentStation - 1;
         } else {
-            currentStation = numberOfStations;
+            currentStation = numberOfStations + 1;
         }
     }
 
