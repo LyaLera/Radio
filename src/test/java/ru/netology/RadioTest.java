@@ -6,30 +6,31 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
     Radio radio = new Radio();
-    Radio radio1 = new Radio(20);
+    Radio radio1 = new Radio(19);
 
     @Test
-    void shouldChekSetCurrentStationIsNumberOfStations() {
+    void shouldChekSetCurrentStationIsMaxStation() {
         radio.setCurrentStation(10);
         assertEquals(10, radio.getCurrentStation());
     }
 
     @Test
-    void shouldChekSetCurrentStationOverNumbersOfStations() {
+    void shouldChekSetCurrentStationOverMaxStation() {
         radio1.setCurrentStation(21);
-        assertEquals(0, radio1.getCurrentStation());
+        assertEquals(20, radio1.getCurrentStation());
     }
 
     @Test
-    void shouldCheckSetCurrentStationLessZero() {
-        radio.setCurrentStation(-1);
-        assertEquals(0, radio.getCurrentStation());
+    void shouldChekSetCurrentStationLessFirstStation() {
+        radio1.setCurrentStation(0);
+        assertEquals(1, radio1.getCurrentStation());
     }
+
 
     @Test
     void shouldCheckSetNumberOfStationsLessZero() {
         radio1.setNumberOfStations(-1);
-        assertEquals(20, radio1.getNumberOfStations());
+        assertEquals(19, radio1.getNumberOfStations());
     }
 
     @Test
@@ -39,23 +40,23 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckNextStationWhenCurrentStationIsZero() {
+    void shouldCheckNextStationWhenCurrentStationLessFirstStation() {
         radio.setCurrentStation(0);
+        radio.nextStation();
+
+        assertEquals(2, radio.getCurrentStation());
+    }
+
+    @Test
+    void shouldCheckNextStationWhenCurrentStationIsMaxStation() {
+        radio.setCurrentStation(10);
         radio.nextStation();
 
         assertEquals(1, radio.getCurrentStation());
     }
 
     @Test
-    void shouldCheckNextStationWhenCurrentStationIsNumberOfStations() {
-        radio.setCurrentStation(10);
-        radio.nextStation();
-
-        assertEquals(0, radio.getCurrentStation());
-    }
-
-    @Test
-    void shouldCheckNextStationWhenCurrentStationAboveNumberOfStations() {
+    void shouldCheckNextStationWhenCurrentStationAboveMaxStation() {
         radio1.setCurrentStation(21);
         radio1.nextStation();
 
@@ -71,15 +72,15 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckPrevStationWhenCurrentStationIsZero() {
-        radio.setCurrentStation(0);
+    void shouldCheckPrevStationWhenCurrentStationIsFirstStation() {
+        radio.setCurrentStation(1);
         radio.prevStation();
 
         assertEquals(10, radio.getCurrentStation());
     }
 
     @Test
-    void shouldCheckPrevStationWhenCurrentStationIsNumberOfStations() {
+    void shouldCheckPrevStationWhenCurrentStationIsMaxStation() {
         radio1.setCurrentStation(20);
         radio1.prevStation();
 
@@ -87,11 +88,11 @@ class RadioTest {
     }
 
     @Test
-    void shouldCheckPrevStationWhenCurrentStationAboveNumberOfStations() {
+    void shouldCheckPrevStationWhenCurrentStationAboveMaxStation() {
         radio.setCurrentStation(11);
         radio.prevStation();
 
-        assertEquals(10, radio.getCurrentStation());
+        assertEquals(9, radio.getCurrentStation());
     }
 
     @Test
