@@ -39,7 +39,7 @@ public class Radio {
     }
 
     public void nextStation() {
-        if (currentStation < numberOfStations) {
+        if (currentStation < numberOfStations +1) {
             currentStation = currentStation + 1;
         } else {
             currentStation = 1;
